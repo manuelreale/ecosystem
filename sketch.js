@@ -170,7 +170,7 @@ function replicate(v){
     }
   }
 
-  if(random(0,100)<abs(1-v.role)*10/(0.1+oldTotal0/70)+(v.role*11/(0.1+oldTotal1/20)) && v.dna && v.age>400){
+  if(random(0,100)<abs(1-v.role)*10/(0.1+oldTotal0/120)+(v.role*11/(0.1+oldTotal1/20)) && v.dna && v.age>400){
     let x= v.pos.x+random(0,100);
     let y= v.pos.y+random(0,100);
 
