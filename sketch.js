@@ -4,6 +4,8 @@ let chart;
 let chart2;
 let total0;
 let total1;
+let oldTotal0;
+let oldTotal1;
 let creatures = [];
 let grass = [];
 let originalDNA0 =[0.45, 1.50] //diet, speed/size
@@ -37,6 +39,9 @@ function setup() {
 
 function draw() {
 
+  oldTotal0=total0
+  oldTotal1=total1
+
   total0=0;
   total1=0;
 
@@ -46,7 +51,7 @@ function draw() {
   background(0);
   lights();
   box(worldSize,10,worldSize);
-  
+
 
   if(frameCount%60==0){
     console.log(creatures)
@@ -56,7 +61,12 @@ function draw() {
   let qtree = new QuadTree(boundary, 2);
 
   function isAlive(creature) {
-    return (creature.energy > 0 && creature.age<4000);
+    if(creature.dna){
+      return (creature.energy > 0 && creature.age<4000);
+    }else{
+      return (creature.energy > 0 && creature.age<8000);
+    }
+    
   }
   
   creatures = creatures.filter(isAlive);
@@ -160,7 +170,7 @@ function replicate(v){
     }
   }
 
-  if(random(0,100)<10+(v.role*20) && v.dna && v.age>400){
+  if(random(0,100)<abs(1-v.role)*10/(0.1+oldTotal0/70)+(v.role*11/(0.1+oldTotal1/20)) && v.dna && v.age>400){
     let x= v.pos.x+random(0,100);
     let y= v.pos.y+random(0,100);
 

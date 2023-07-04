@@ -224,13 +224,13 @@ class Creature {
         this.color = lerpColor(color("#ffffff"), color(this.color), this.energy/this.maxEnergy) 
 
         if(closestHerbivore){
-          if (this.canSee(closestHerbivore) && this.energy<this.maxEnergy) {
+          if (this.canSee(closestHerbivore) && this.energy<this.maxEnergy*0.8) {
             //this.color = lerpColor(color(this.color), color("#ff5599"), 0.2) 
             this.pursue(closestHerbivore) 
           }
       
           if (this.isTouching(closestHerbivore)) {
-            this.energy+=closestHerbivore.maxEnergy*1.5;
+            this.energy+=closestHerbivore.maxEnergy*1.2;
             replicate(this)
             this.color =color("#ffffff")
     
